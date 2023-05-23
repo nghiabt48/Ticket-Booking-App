@@ -9,14 +9,26 @@ const Register = (props) => {
     const [passwordUser, setPasswordUser] = useState("")
     const [passwordConfirm, setpasswordConfirm] = useState("")
     const RegisterApp = async () => {
-        
+
         try {
             await AxiosIntance().post("users/register", { username: Username, email: emailUser, password: passwordUser, passwordConfirm: passwordConfirm });
             ToastAndroid.show("Dang ky thanh cong!", ToastAndroid.SHORT);
 
             navigation.navigate("Login")
         } catch (e) {
-            ToastAndroid.show("Hay dien day du cac thong tin", ToastAndroid.SHORT);
+            if (e.response.data.error.name == "ValidationError" 
+                && e.response.data.error.message.includes("Passwords are not the same")) {
+                ToastAndroid.show("Mật khẩu không trùng khớp.", ToastAndroid.LONG);
+            }
+            else if (e.response.data.error.name == "ValidationError") {
+                ToastAndroid.show("Hãy nhập đầy đủ các thông tin.", ToastAndroid.LONG);
+            }
+            if (e.response.data.message.includes("email") && e.response.data.error.code === 11000) {
+                ToastAndroid.show("Đã có người sử dụng email này.", ToastAndroid.LONG);
+            }
+            if (e.response.data.message.includes("username") && e.response.data.error.code === 11000) {
+                ToastAndroid.show("Đã có người sử dụng username này.", ToastAndroid.LONG);
+            }
         }
 
     }
