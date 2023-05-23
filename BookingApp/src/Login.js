@@ -1,23 +1,39 @@
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
-import React, { useContext } from 'react'
+import { Button, StyleSheet, Text, TextInput, ToastAndroid, View } from 'react-native'
+import React, { useContext, useState } from 'react'
 import { AppConText } from './AppConText';
+import AxiosIntance from './AxiosIntance';
 
 const Login = (props) => {
     const { navigation } = props;
     const { setisLogin, setinfoUser } = useContext(AppConText);
+    const [emailUser, setemailUser] = useState("")
+    
+    const [passwordUser, setPasswordUser] = useState("")
+    
     const LoginApp = async () => {
+
+        try {
+           const response = await AxiosIntance().post("users/login", {  email: emailUser, password: passwordUser });
+            ToastAndroid.show("Dang nhap thanh cong!", ToastAndroid.SHORT);
+            setisLogin(true)
+            
+        } catch (e) {
+            console.log(e)
+            ToastAndroid.show("Hay dien day du cac thong tin", ToastAndroid.SHORT);
+            
+        }
         
-        setisLogin(true)
+        
     }
     const DangKy = async()=>{
         navigation.navigate('Register');
       }
   return (
     <View style={styles.container}>
-        <Text>Username</Text>
-        <TextInput style={styles.TextInputUser}></TextInput>
+        <Text>Email</Text>
+        <TextInput style={styles.TextInputUser} onChangeText={setemailUser}></TextInput>
         <Text>Password</Text>
-        <TextInput style={styles.TextInputPass}></TextInput>
+        <TextInput style={styles.TextInputPass} onChangeText={setPasswordUser}></TextInput>
         <Button title='Login' onPress={LoginApp}></Button>
         <Button title='Register' onPress={DangKy}></Button>
     </View>

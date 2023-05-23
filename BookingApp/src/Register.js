@@ -1,10 +1,24 @@
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
-import React from 'react'
+import { Button, StyleSheet, Text, TextInput, View, ToastAndroid } from 'react-native'
+import React, { useState } from 'react'
+import AxiosIntance from './AxiosIntance';
 
 const Register = (props) => {
     const { navigation } = props;
+    const [emailUser, setemailUser] = useState("")
+    const [Username, setUsername] = useState("")
+    const [passwordUser, setPasswordUser] = useState("")
+    const [passwordConfirm, setpasswordConfirm] = useState("")
     const RegisterApp = async () => {
-        navigation.navigate("Login")
+        
+        try {
+            await AxiosIntance().post("users/register", { username: Username, email: emailUser, password: passwordUser, passwordConfirm: passwordConfirm });
+            ToastAndroid.show("Dang ky thanh cong!", ToastAndroid.SHORT);
+
+            navigation.navigate("Login")
+        } catch (e) {
+            ToastAndroid.show("Hay dien day du cac thong tin", ToastAndroid.SHORT);
+        }
+
     }
     const Back = () => {
         navigation.navigate("Login")
@@ -12,11 +26,13 @@ const Register = (props) => {
     return (
         <View style={styles.container}>
             <Text>Username</Text>
-            <TextInput style={styles.TextInputUser}></TextInput>
+            <TextInput style={styles.TextInputUser} onChangeText={setUsername}></TextInput>
+            <Text>email</Text>
+            <TextInput style={styles.TextInputUser} onChangeText={setemailUser}></TextInput>
             <Text>Password</Text>
-            <TextInput style={styles.TextInputPass}></TextInput>
-            <Text>Password</Text>
-            <TextInput style={styles.TextInputPass}></TextInput>
+            <TextInput style={styles.TextInputPass} onChangeText={setPasswordUser}></TextInput>
+            <Text>passwordConfirm</Text>
+            <TextInput style={styles.TextInputPass} onChangeText={setpasswordConfirm}></TextInput>
             <Button title='Register' onPress={RegisterApp}></Button>
             <Button title='Back' onPress={Back}></Button>
         </View>
