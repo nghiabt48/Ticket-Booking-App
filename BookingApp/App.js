@@ -1,10 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Login from './src/Login';
-
+import { AppConTextProvider } from './src/AppConText';
+import { NavigationContainer } from '@react-navigation/native';
+import AppNavigator from './src/AppNavigator';
 export default function App() {
   return (
-      <Login></Login>
+    <AppConTextProvider>
+      <NavigationContainer>
+        <AppNavigator/>
+      </NavigationContainer>
+    </AppConTextProvider>
   );
 }
 

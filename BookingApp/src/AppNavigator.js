@@ -6,6 +6,7 @@ import { AppConText } from './AppConText';
 import Login from './Login';
 import Register from './Register';
 import MainApp from './MainApp';
+import ListMovi from './ListMovi';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -21,7 +22,7 @@ const Users = () => {
 const Main = () => {
     return(
         <Stack.Navigator screenOptions={{headerShown:false}}>
-            <Stack.Screen name="Main" component={MainApp}/>
+            <Stack.Screen name="Main" component={ListMovi}/>
         </Stack.Navigator>
     )
     
