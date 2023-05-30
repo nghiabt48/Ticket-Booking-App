@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image, TextInput } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import ItemMovi from './ItemMovi';
 import AxiosIntance from './AxiosIntance';
@@ -25,15 +25,14 @@ const ListMovi = (props) => {
     
     return (
         <View style={styles.container}>
-            {/* <View style={styles.text2}>
-                <Image source={require('./image/gmail.png')} style={{ width: 40, height: 40, marginStart: 20 }} />
-                <Text style={styles.text1}>Warszaw,Poland</Text>
-                <Image source={require('./image/tim.png')} style={{ width: 30, height: 30, marginStart: 130 }} />
-            </View> */}
+            <View style={styles.Tim}>
+                <TextInput style={styles.TextInputTim}></TextInput>
+                <Image source={require('./image/tim.png')} style={styles.ImageTim} />
+            </View>
             <FlatList
                 data={data}
                 numColumns = {2}
-                
+                 
                 renderItem={({ item }) => <ItemMovi dulieu={item} navigation={navigation} />}
                 keyExtractor={item => item._id}
                 showsVerticalScrollIndicator={false}
@@ -51,8 +50,28 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor:'#130B2B',
-        padding:10,
+        padding:15,
     },
+    TextInputTim:{
+        width:'85%',
+        borderWidth:1,
+        borderColor:'#DF0A64',
+        padding: 8,
+        borderRadius: 20,
+        marginTop: 10,
+        color: '#ffff',
+        marginStart:10,
+    },
+    Tim:{
+        flexDirection: 'row',
+        alignItems:'center',
+    },
+    ImageTim:{
+        width:35,
+        height:35,
+        marginLeft:10,
+        
+    }
     
 })
 // const datan = [
