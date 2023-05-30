@@ -1,6 +1,7 @@
-import { Button, StyleSheet, Text, TextInput, View, ToastAndroid } from 'react-native'
+import { Button, StyleSheet, Text, TextInput, View, ToastAndroid, ImageBackground, SafeAreaView, StatusBar, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import AxiosIntance from './AxiosIntance';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const Register = (props) => {
     const { navigation } = props;
@@ -36,18 +37,56 @@ const Register = (props) => {
         navigation.navigate("Login")
     }
     return (
-        <View style={styles.container}>
-            <Text>Username</Text>
-            <TextInput style={styles.TextInputUser} onChangeText={setUsername}></TextInput>
-            <Text>email</Text>
-            <TextInput style={styles.TextInputUser} onChangeText={setemailUser}></TextInput>
-            <Text>Password</Text>
-            <TextInput style={styles.TextInputPass} onChangeText={setPasswordUser}></TextInput>
-            <Text>passwordConfirm</Text>
-            <TextInput style={styles.TextInputPass} onChangeText={setpasswordConfirm}></TextInput>
-            <Button title='Register' onPress={RegisterApp}></Button>
-            <Button title='Back' onPress={Back}></Button>
-        </View>
+        <SafeAreaView style={styles.container}>
+            <StatusBar barStyle="light-content" />
+            <ImageBackground source={require("./Images/BG.png")} style={styles.logoContainer}>
+                <Text style={styles.title}>Cinema</Text>
+                <Text style={styles.title2}>Plus+</Text>
+            </ImageBackground>
+            <View style={styles.infocontainer}>
+            <TextInput style={styles.input} onChangeText={setPasswordUser}
+                    placeholder="Enter username"
+                    returnKeyType='go'
+                    secureTextEntry={true}
+                    autoCorrect={false} />
+                <TextInput style={styles.input} onChangeText={setemailUser}
+                    placeholder="Enter mail"
+                    keyboardType='email-address'
+                    returnKeyType='next'
+                    autoCorrect={false} />
+                <TextInput style={styles.input} onChangeText={setPasswordUser}
+                    placeholder="Enter password"
+                    returnKeyType='go'
+                    secureTextEntry={true}
+                    autoCorrect={false} />
+                <TextInput style={styles.input} onChangeText={setPasswordUser}
+                    placeholder="Enter password confirm"
+                    returnKeyType='go'
+                    secureTextEntry={true}
+                    autoCorrect={false} />
+
+                <TouchableOpacity style={styles.buttonContainer} title='Register' onPress={RegisterApp}>
+                    <LinearGradient
+                        start={{ x: 0.0, y: 0.0 }}
+                        end={{ x: 1.0, y: 0.0 }}
+                        locations={[0.0, 1.0]}
+                        colors={['#e5008e', '#fc2c11']}
+                        style={styles.buttonG}
+                    ><Text style={styles.buttonText}>REGISTER</Text>
+                    </LinearGradient>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonContainer1} title='Back' onPress={Back}>
+                    <LinearGradient
+                        start={{ x: 0.0, y: 0.0 }}
+                        end={{ x: 1.0, y: 0.0 }}
+                        locations={[0.0, 1.0]}
+                        colors={['#e5008e', '#fc2c11']}
+                        style={styles.buttonG}
+                    ><Text style={styles.buttonText}>BACK</Text>
+                    </LinearGradient>
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>
     )
 }
 
@@ -56,13 +95,58 @@ export default Register
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        padding: 20
+        backgroundColor: 'rgb(19,11,43)',
+        flexDirection: 'column'
     },
-    TextInputUser: {
-        borderWidth: 2
+    logoContainer: {
+        flex: 1,
     },
-    TextInputPass: {
-        borderWidth: 2
+    title: {
+        color: 'white',
+        fontSize: 60,
+        marginTop: '30%',
+        marginLeft: 15,
+        opacity: 0.9,
+        fontFamily: 'serif',
     },
+    title2: {
+        color: '#eb0b6d',
+        fontSize: 60,
+        marginTop: 5,
+        marginLeft: 15,
+        opacity: 0.9,
+        fontFamily: 'serif',
+    },
+    infocontainer: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: 260,
+        padding: 30,
+        marginBottom: '50%',
+        // backgroundColor: 'red',
+    },
+    input: {
+        height: 48,
+        borderRadius: 10,
+        backgroundColor: 'rgba(255,255,255,0.2)',
+        color: '#FFF',
+        paddingHorizontal: 10,
+        marginBottom: 20,
+    },
+
+    buttonText: {
+        height: 48,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 30,
+        color: 'white',
+    },
+    buttonG: {
+        borderRadius: 30
+    },
+    buttonContainer1:{
+        marginTop:10,
+    }
 })
