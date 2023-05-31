@@ -21,8 +21,8 @@ const Users = () => {
 const Main = () => {
     return(
         <Stack.Navigator screenOptions={{headerShown:false}}>
-            <Stack.Screen name="Booking" component={BookingScreen}/>
             <Stack.Screen name="Main" component={ListMovi}/>
+            <Stack.Screen name="Booking" component={BookingScreen}/>
         </Stack.Navigator>
     )
     

@@ -5,6 +5,7 @@ import { AppConTextProvider } from './src/AppConText';
 import { NavigationContainer } from '@react-navigation/native';
 import { StripeProvider } from '@stripe/stripe-react-native';
 import BookingScreen from './src/BookingScreen';
+import AppNavigator from './src/AppNavigator';
 
 
 const STRIPE_KEY = 'pk_test_51NBvkEFht8KJ0hQJRDYtBvGbE1gXSaIFRFiz3pBErwMQ9B45YKIGVv6CoDVut4nhX7UMipWPeHZDcDzdNdZhnGny00bPelUPPE'
