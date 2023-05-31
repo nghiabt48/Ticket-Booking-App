@@ -7,9 +7,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 const BookingScreen = () => {
   const {initPaymentSheet, presentPaymentSheet} = useStripe()
 
-  //const user = "6468f99facc52be2b31ff471"
   const showtime = "646f38d8643587bc74af1bda"
-  const seat_number = ["C4"]
+  const seat_number = ["C4"] // Sau mỗi lần test nhớ thay ghế khác
   const hardMovieId = "646b06bbdf50891e2ceacbbe"
 
   const [moviePrice, setMoviePrice] = useState(null);
@@ -31,6 +30,7 @@ const BookingScreen = () => {
       // 1. Get checkout session
       const response = await AxiosIntance().get(`tickets/checkout/${showtime}/${seat_number.length}`)
       // 2. Create checkout form + charge credit card
+  //Số thẻ để test: 4242 4242 4242 4242
       const initResponse = await initPaymentSheet({
         merchantDisplayName: 'John Doe',
         paymentIntentClientSecret: response.paymentIntent,
