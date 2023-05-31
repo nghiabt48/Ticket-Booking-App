@@ -32,7 +32,6 @@ const ListMovi = (props) => {
             <FlatList
                 data={data}
                 numColumns = {2}
-                 
                 renderItem={({ item }) => <ItemMovi dulieu={item} navigation={navigation} />}
                 keyExtractor={item => item._id}
                 showsVerticalScrollIndicator={false}
