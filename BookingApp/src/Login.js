@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     title: {
         color: 'white',
         fontSize: 60,
-        marginTop: '50%',
+        marginTop: '40%',
         marginLeft: 15,
         opacity: 0.9,
         fontFamily: 'serif',
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         height: 260,
         padding: 30,
-        marginBottom: 20,
+        marginBottom: 25,
         // backgroundColor: 'red',
     },
     buttonContainer: {
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     input: {
-        height: 50,
+        height: 48,
         borderRadius: 10,
         backgroundColor: '#252525',
         color: '#FFFFFF',
@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
 
     buttonText: {
         //textAlign: 'center',
+        height: 48,
         fontWeight: 'bold',
         fontSize: 15,
         color: 'white',

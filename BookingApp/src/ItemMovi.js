@@ -46,6 +46,8 @@ const styles = StyleSheet.create({
   ImageMoves: {
     width: '100%',
     height: 200,
+    borderTopLeftRadius:10,
+    borderTopRightRadius:10,
   },
   image: {
     marginStart:10,
@@ -54,7 +56,7 @@ const styles = StyleSheet.create({
 
   title: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 18,
     color: '#fff',
     marginStart:10,
   },
