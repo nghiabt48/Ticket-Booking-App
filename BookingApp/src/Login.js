@@ -113,13 +113,6 @@ const styles = StyleSheet.create({
     },
     infocontainer: {
         padding: 40,
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        bottom: 0,
-        height: 260,
-        padding: 30,
-        marginBottom: 25,
         // backgroundColor: 'red',
     },
     buttonContainer: {
@@ -127,7 +120,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     input: {
-        height: 48,
+        height: 40,
         borderRadius: 10,
         backgroundColor: '#252525',
         color: '#FFFFFF',
@@ -136,10 +129,8 @@ const styles = StyleSheet.create({
     },
 
     buttonText: {
-        //textAlign: 'center',
-        height: 48,
         fontWeight: 'bold',
-        fontSize: 15,
+        fontSize: 20,
         color: 'white',
     },
     buttonText2: {

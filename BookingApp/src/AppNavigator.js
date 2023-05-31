@@ -6,6 +6,7 @@ import { AppConText } from './AppConText';
 import Login from './Login';
 import Register from './Register';
 import MainApp from './MainApp';
+import BookingScreen from './BookingScreen';
 import ListMovi from './ListMovi';
 import ItemMovi from './ItemMovi';
 import Test1 from './Test1';

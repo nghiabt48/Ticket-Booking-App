@@ -1,27 +1,19 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
 const ItemMovi = (props) => {
-  const { dulieu, navigation } = props;
+    const { dulieu, navigation } = props;
   return (
-    <TouchableOpacity style={styles.container}>
-      <View style={styles.itemAll}>
-        <Image source={require('./image/avata.png')} style={styles.ImageMoves} />
-        <Text style={styles.title}>{dulieu.title}</Text>
-        <View style={styles.image}>
-          <Image source={require('./image/sao.png')} />
-          <Image source={require('./image/sao.png')} />
-          <Image source={require('./image/sao.png')} />
-          <Image source={require('./image/sao.png')} />
-          <Image source={require('./image/sao1.png')} />
+    <TouchableOpacity>
+      <View style={dulieu.container}>
+        {/* <Image source={require('./img/Tau.png')} style={styles.image}/> */}
+        {/* <Image style={styles.image} source={{ uri: dulieu.hinhSp }} /> */}
+        <View style={styles.content}>
+          <Text style={styles.textTitle}>{dulieu.tenSp}</Text>
+          <Text >Gia: {dulieu.gia}</Text>
+          <Text >So luong: {dulieu.soLuong}</Text>
         </View>
-        <Text style={styles.title2}>
-          {dulieu.price}
-        </Text>
       </View>
-
-
-
     </TouchableOpacity>
   )
 }
@@ -66,4 +58,9 @@ const styles = StyleSheet.create({
     marginStart:10,
   },
 
+    container: {
+        flexDirection: 'column',
+        marginTop: 10,
+        
+      },
 })
