@@ -6,8 +6,9 @@ import AppNavigator from './src/AppNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import ItemMovi from './src/ItemMovi';
 import ListMovi from './src/ListMovi';
-
-
+import Profile from './src/Profile';
+import Listchair from './src/Listchair';
+import Detail from './src/Detail';
 
 export default function App() {
   return (
@@ -16,13 +17,11 @@ export default function App() {
     //     <AppNavigator />
     //   </NavigationContainer>
     // </AppConTextProvider>
-   <ListMovi/>
+    <Detail/>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
   },
 });
