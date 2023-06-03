@@ -49,7 +49,7 @@ const BookingScreen = () => {
       } 
       Alert.alert(`Success`, 'The payment was confirmed successfully')
       // 4. After paying, create the ticket
-      await AxiosIntance().post(`tickets/checkout/646f38d8643587bc74af1bda/create-ticket`, {price: moviePrice * seat_number.length, seat_number})
+      await AxiosIntance().post(`tickets/checkout/${showtime}/create-ticket`, {price: moviePrice * seat_number.length, seat_number})
     }catch(err) {
       console.log("Err at book function: "+err.response.data.message)
     }
