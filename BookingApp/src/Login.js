@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, TextInput, ToastAndroid, View, SafeAreaView, ImageBackground, StatusBar, TouchableOpacity } from 'react-native'
+import { Button, StyleSheet, Text, TextInput, ToastAndroid, View, SafeAreaView, ImageBackground, StatusBar, TouchableOpacity, Dimensions } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { AppConText } from './AppConText';
 import AxiosIntance from './AxiosIntance';
@@ -13,10 +13,8 @@ const Login = (props) => {
     const [passwordUser, setPasswordUser] = useState("")
 
     const LoginApp = async () => {
-        console.log(emailUser, passwordUser)
         try {
             const response = await AxiosIntance().post("users/login", { email: emailUser, password: passwordUser });
-
             await AsyncStorage.setItem('token', response.token);
             ToastAndroid.show("Dang nhap thanh cong!", ToastAndroid.SHORT);
             setisLogin(true)
@@ -41,25 +39,27 @@ const Login = (props) => {
         // </View>
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle="light-content" />
-
+            
             <ImageBackground source={require("./Images/BG.png")} style={styles.logoContainer}>
                 <Text style={styles.title}>Cinema</Text>
                 <Text style={styles.title2}>Plus+</Text>
-            </ImageBackground>
-
-            <View style={styles.infocontainer}>
+                <View style={styles.infocontainer}>
                 <TextInput style={styles.input} onChangeText={setemailUser}
-                    placeholder="Enter username/mail"
+                    placeholder="Enter email"
+                    placeholderTextColor={'#aba9a7'}
                     keyboardType='email-address'
                     returnKeyType='next'
                     autoCorrect={false} />
                 <TextInput style={styles.input} onChangeText={setPasswordUser}
                     placeholder="Enter password"
+                    placeholderTextColor={'#aba9a7'}
                     returnKeyType='go'
                     secureTextEntry={true}
                     autoCorrect={false} />
+                
+                    <TouchableOpacity  style={styles.buttonContainer} title='Login' onPress={LoginApp}>
 
-                <TouchableOpacity style={styles.buttonContainer} title='Login' onPress={LoginApp}>
+                
                     <LinearGradient
                         start={{ x: 0.0, y: 0.0 }}
                         end={{ x: 1.0, y: 0.0 }}
@@ -68,11 +68,15 @@ const Login = (props) => {
                         style={styles.buttonG}
                     ><Text style={styles.buttonText}>SIGN IN</Text>
                     </LinearGradient>
-                </TouchableOpacity>
+                    </TouchableOpacity>
+
                 <TouchableOpacity title='Register' onPress={DangKy}>
                     <Text style={styles.buttonText2}>New at CinemaPlus? <Text style={styles.buttonText3}>Create Account</Text></Text>
                 </TouchableOpacity>
             </View>
+            </ImageBackground>
+
+            
         </SafeAreaView>
     )
 }
@@ -87,11 +91,14 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
         flex: 1,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+        resizeMode: 'stretch',
     },
     title: {
         color: 'white',
         fontSize: 60,
-        marginTop: '50%',
+        marginTop: '40%',
         marginLeft: 15,
         opacity: 0.9,
         fontFamily: 'serif',
@@ -105,27 +112,25 @@ const styles = StyleSheet.create({
         fontFamily: 'serif',
     },
     infocontainer: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        bottom: 0,
-        height: 260,
         padding: 40,
         // backgroundColor: 'red',
+    },
+    buttonContainer: {
+        width: 300,
+        alignSelf: 'center',
     },
     input: {
         height: 40,
         borderRadius: 10,
-        backgroundColor: 'rgba(255,255,255,0.2)',
-        color: '#FFF',
+        backgroundColor: '#252525',
+        color: '#FFFFFF',
         paddingHorizontal: 10,
         marginBottom: 20,
     },
 
     buttonText: {
-        textAlign: 'center',
         fontWeight: 'bold',
-        fontSize: 30,
+        fontSize: 20,
         color: 'white',
     },
     buttonText2: {
@@ -143,7 +148,10 @@ const styles = StyleSheet.create({
         color: '#e5008e',
     },
     buttonG: {
-        borderRadius: 30
+        borderRadius: 30,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 
 
