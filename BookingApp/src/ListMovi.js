@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image, TextInput } from 'react-native'
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image, TextInput, ActivityIndicator } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import ItemMovi from './ItemMovi';
 import AxiosIntance from './AxiosIntance';
@@ -6,10 +6,11 @@ import AxiosIntance from './AxiosIntance';
 const ListMovi = (props) => {
     const { navigation } = props;
     const [data, setdata] = useState([])
-    const [isLoading, setisLoading] = useState(true);
+    const [isLoading, setisLoading] = useState(null);
     
     useEffect(() => {
         const getDs = async () => {
+            setisLoading(true)
             const response = await AxiosIntance().get("/movies");
             if (response.status == "success") {
                 setdata(response.data.data);
@@ -17,7 +18,8 @@ const ListMovi = (props) => {
                 //   console.log(response.data.data)
             } else {
                 ToastAndroid.show("Lay du lieu that bai", ToastAndroid.SHORT);
-
+                setisLoading(false)
+                setdata(null)
             }
         }
         getDs();
@@ -52,17 +54,15 @@ const ListMovi = (props) => {
             </View>
             {
                 isLoading == true ? (
-                    <View>
-                        <Text>Loading...</Text>
-                    </View>
+                    <ActivityIndicator size="large"/>
                 ) : (
                     <FlatList
-                        data={data}
-                        numColumns={2}
-                        renderItem={({ item }) => <ItemMovi dulieu={item} navigation={navigation} />}
-                        keyExtractor={item => item._id}
-                        showsVerticalScrollIndicator={false}
-                    />
+                    data={data}
+                    numColumns={2}
+                    renderItem={( {item} ) => <ItemMovi dulieu={item} navigation={navigation} />}
+                    keyExtractor={(item) => item._id}
+                    showsVerticalScrollIndicator={false}
+                />
                 )
             }
         </View>
@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#130B2B',
-        padding: 15,
     },
     TextInputTim: {
         width:'100%',
