@@ -13,6 +13,7 @@ import Test1 from './Test1';
 import Test2 from './Test2';
 import Test3 from './Test3';
 import Test4 from './Test4';
+import Listchair from './Listchair';
 
 
 const Stack = createNativeStackNavigator();
@@ -55,7 +56,7 @@ const Main = () => {
       <Stack.Screen name="Test2" component={Test2} />
       <Tab.Screen name="ListMovi" component={ListMovi} options={{ title: "trang", headerShown: false, }} />
       <Stack.Screen name="Booking" component={BookingScreen} />
-      <Stack.Screen name="Test3" component={Test3} />
+      <Stack.Screen name="ListChair" component={Listchair} options={{ title: "trang", headerShown: false, }} />
       <Stack.Screen name="Test4" component={Test4} />
     </Tab.Navigator>
   )

@@ -4,7 +4,7 @@ import React from 'react'
 const Listchair = () => {
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: 'row', height: 50, justifyContent: 'flex-start', alignItems: 'center', marginTop: 50 }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
         <Image source={require('./image/image3.png')} style={{ marginTop: 4, marginStart: 20 }} />
         <Text style={{ color: '#fff', marginStart: 100, fontSize: 21 }}>Select seatc</Text>
       </View>
@@ -18,7 +18,7 @@ const Listchair = () => {
           <Text style={{ flexDirection: 'row-reverse', color: '#fff', marginTop: 12 }}>Multikion:Atrium Targoswek</Text>
         </View>
       </View>
-      <View style={{backgroundColor:'#838282'}}>
+      
       <View style={{ flexDirection: 'row' }}>
         <View style={{ height: 50, backgroundColor: '#746B79', width: 50, borderBottomRightRadius: 10, borderBottomStartRadius: 10, marginTop: 0, marginStart: 40 }}>
           <Text style={{ color: '#fff', marginStart: 5, marginTop: 10 }}>19:00</Text>
@@ -176,7 +176,6 @@ const Listchair = () => {
         <Text style={{color:'#fff',marginStart:20,marginTop:10}}>PROCEED TO CHECK</Text>
         </View>
         <Text style={{color:'#fff',fontSize:7,marginStart:30}}>TICKETS FOR $12.49EACH</Text>
-      </View>
       </View>
     </View>
     
