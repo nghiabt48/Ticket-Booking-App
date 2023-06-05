@@ -37,7 +37,7 @@ const Login = (props) => {
         //     <Button title='Login' onPress={LoginApp}></Button>
         //     <Button title='Register' onPress={DangKy}></Button>
         // </View>
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <StatusBar barStyle="light-content" />
             
             <ImageBackground source={require("./Images/BG.png")} style={styles.logoContainer}>
@@ -77,7 +77,7 @@ const Login = (props) => {
             </ImageBackground>
 
             
-        </SafeAreaView>
+        </View>
     )
 }
 

@@ -1,13 +1,24 @@
 import { StyleSheet, Text, TouchableOpacity, View,Image, Dimensions } from 'react-native'
 import React from 'react'
+import Detail from './Detail';
 
 const ItemMovi = (props) => {
   const { dulieu, navigation } = props;
+  const ImageURL = `http://139.180.138.39:3000/img/movies/${dulieu.imageCover}`
+  const goDetail = function() {
+    navigation.navigate('Detail', {dulieu, ImageURL})
+  }
+  const shortenText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength - 3) + '...';
+    }
+    return text;
+  };
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={goDetail}>
       <View style={styles.itemAll}>
-        <Image source={require('./image/avata.png')} style={styles.ImageMoves} />
-        <Text style={styles.title}>{dulieu.title}</Text>
+        <Image source={{uri: ImageURL}} style={styles.ImageMoves} />
+        <Text style={styles.title}>{shortenText(dulieu.title, 14)}</Text>
         <View style={styles.image}>
           <Image source={require('./image/sao.png')} />
           <Image source={require('./image/sao.png')} />

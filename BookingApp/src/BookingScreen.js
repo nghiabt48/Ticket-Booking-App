@@ -57,13 +57,13 @@ const BookingScreen = () => {
   }
   
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Text>Ghế đã chọn: C3, C4</Text>
       {moviePrice && (
         <Text>Tạm Tính: {seat_number.length * moviePrice}</Text>
       )}
       <Button title='Đặt Vé' onPress={book}></Button>
-    </SafeAreaView>
+    </View>
   )
 }
 

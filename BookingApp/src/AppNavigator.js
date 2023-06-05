@@ -14,6 +14,9 @@ import Test2 from './Test2';
 import Test3 from './Test3';
 import Test4 from './Test4';
 import Listchair from './Listchair';
+import Detail from './Detail';
+import TimeSlot from './TimeSlot';
+import SeatSelectionScreen from './SeatSelectionScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -27,15 +30,26 @@ const Users = () => {
   )
 
 }
+const DetailProductStack = () => {
+  return(
+  <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Screen name="ListMovi" component={ListMovi} />
+    <Stack.Screen name="Detail" component={Detail}/>
+    <Stack.Screen name="PickTime" component={TimeSlot}/>
+    <Stack.Screen name="PickSeats" component={SeatSelectionScreen}/>
+  </Stack.Navigator>
+  )
+  
+}
 const Main = () => {
   return (
-    <Tab.Navigator initialRouteName='ListMovi' screenOptions={({ route }) => ({
+    <Tab.Navigator initialRouteName='Movie' screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
         if (route.name === 'Test1') {
           return <Image source={require('./image/movies.png')} />;
         } else if (route.name === 'Test2') {
           return <Image source={require('./image/tem.png')} />;
-        } else if (route.name === 'ListMovi') {
+        } else if (route.name === 'Movie') {
           return <Image source={require('./image/TV.png')} />;
         } else if (route.name === 'Test3') {
           return <Image source={require('./image/hear.png')} />;
@@ -54,11 +68,13 @@ const Main = () => {
     })}>
       <Stack.Screen name="Test1" component={Test1} />
       <Stack.Screen name="Test2" component={Test2} />
-      <Tab.Screen name="ListMovi" component={ListMovi} options={{ title: "trang", headerShown: false, }} />
+      <Tab.Screen name="Movie"component={DetailProductStack} options={{headerShown: false}}>
+      </Tab.Screen>
       <Stack.Screen name="Booking" component={BookingScreen} />
       <Stack.Screen name="ListChair" component={Listchair} options={{ title: "trang", headerShown: false, }} />
       <Stack.Screen name="Test4" component={Test4} />
     </Tab.Navigator>
+    
   )
 
 }

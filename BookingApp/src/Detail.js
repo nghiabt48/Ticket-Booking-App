@@ -1,56 +1,94 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, ScrollView, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import ItemReview from './ItemReview'
+import AxiosIntance from './AxiosIntance'
+import { useNavigation } from '@react-navigation/native'
 
-const Detail = () => {
+const Detail = (props) => {
+    const { route } = props
+    const { params } = route
+    const navigation = useNavigation()
+    const displayGenres = params.dulieu.genre.join(', ');
+    const displayCast = params.dulieu.cast.join(', ');
+    const [reviews, setreviews] = useState([])
+    const [loading, setloading] = useState(false)
+
+    const goBack = () => {
+        navigation.goBack()
+    }
+    const goSelectTimeAndCinema = () => {
+        navigation.navigate('PickTime', {id: params.dulieu._id, price: params.dulieu.price, title: params.dulieu.title})
+    }
+    useEffect(() => {
+        async function fetchReviews() {
+            try {
+                setloading(true)
+                const response = await AxiosIntance().get(`movies/${params.dulieu._id}/reviews`);
+                setreviews(response.data.data);
+                setloading(false)
+            } catch (error) {
+                console.log("Err at when loading Reviews: " + error.message);
+                setloading(false)
+            }
+        }
+        fetchReviews();
+    }, []);
     return (
-        <View style={styles.container}>
-            <View >
-                <Image source={require('./image/a.png')} style={styles.boxImage1} />
-                <Text style={{ color: '#fff', marginStart: 50, marginTop: 40 }}>Back</Text>
-                <Image source={require('./image/image16.png')} style={{ marginStart: 320 }} />
-                <Image source={require('./image/image5.png')} style={styles.boxImage2} />
-                <Image source={require('./image/image3.png')} style={styles.boxImage3} />
-                <Image source={require('./image/image6.png')} style={{ marginStart: 20, marginTop: 60 }} />
-            </View>
-            <View>
-                <Text style={{ color: '#fff', marginTop: 40, fontSize: 30, marginStart: 10 }}>Avengers:                              End Game</Text>
-                <Text style={{ color: '#B72F2F', marginStart: 10, marginTop: 5 }}>Action,Adventure,Fantasy</Text>
-            </View>
-            <View style={{ flexDirection: 'row' }}>
-                <Image source={require('./image/sao.png')} style={{ marginStart: 10, marginTop: 5 }} />
-                <Image source={require('./image/sao.png')} style={{ marginStart: 6, marginTop: 5 }} />
-                <Image source={require('./image/sao.png')} style={{ marginStart: 6, marginTop: 5 }} />
-                <Image source={require('./image/sao.png')} style={{ marginStart: 6, marginTop: 5 }} />
-                <Image source={require('./image/sao1.png')} style={{ marginStart: 6, marginTop: 5 }} />
-                <Text style={{ color: '#fff', marginStart: 10, fontSize: 12, marginTop: 4 }}>125 REVIEWS</Text>
-            </View>
-            <Text style={{ color: '#fff', marginStart: 10, marginTop: 10, fontSize: 16 }}>Storyline</Text>
-            <Text style={{ color: '#fff', marginStart: 10, marginTop: 10 }}>After the devastating events of Avengers:InfinityWar,the universe is in ruins.With the help of remaining allies,the Avengers assemble once more in order to reverse Thanos’actions and restore balance to the universe.</Text>
-            <View style={{ flexDirection: "row" }}>
-                <Text style={{ color: '#fff', marginStart: 10, fontSize: 15, marginTop: 15 }}>Cast</Text>
-                <Text style={{ color: '#fff', marginStart: 280, marginTop: 15 }}>See All</Text>
-            </View>
-            <View style={{ flexDirection: 'row' }}>
-                <Image source={require('./image/image12.png')} style={{ marginStart: 10 }} />
-                <Image source={require('./image/image13.png')} style={{ marginStart: 13 }} />
-                <Image source={require('./image/image14.png')} style={{ marginStart: 13 }} />
-                <Image source={require('./image/image15.png')} style={{ marginStart: 13 }} />
-            </View>
-            <View style={{ flexDirection: 'row' }}>
-                <Text style={{ color: '#fff', fontSize: 12, marginStart: 10 }}>Robert Downey Jr</Text>
-                <Text style={{ color: '#fff', fontSize: 12, marginStart: 16 }}>Chris Evans</Text>
-                <Text style={{ color: '#fff', fontSize: 12, marginStart: 22 }}>Mark Ruffalo</Text>
-                <Text style={{ color: '#fff', fontSize: 12, marginStart: 25 }}>Chris Hemsworth</Text>
-            </View>
-            <View style={{ flexDirection: 'row' }}>
-                <View style={{ backgroundColor: '#252525', width: 150, height: 40, marginTop: 20, marginStart: 30, borderRadius: 50 }}>
-                    <Text style={{ color: '#fff', fontSize: 13, marginTop: 9, marginStart: 25 }}>LEAVE A REVIEW</Text>
+        <ScrollView>
+
+            <View style={styles.container}>
+                <View >
+                    <Image source={{ uri: params.ImageURL }} style={styles.boxImage1} />
+                    <View style={{ flexDirection: 'row', marginTop: 40, justifyContent: 'space-between' }}>
+                        <TouchableOpacity onPress={goBack}>
+                            <Text style={{ color: '#fff', marginStart: 50 }}>Back</Text>
+                            {/* button back */}
+                            <Image source={require('./image/image3.png')} style={styles.boxImage3} />
+                        </TouchableOpacity>
+
+                        {/* favorite */}
+                        <Image source={require('./image/image16.png')} style={{marginRight: 20}} />
+
+                    </View>
+
+
                 </View>
-                <View style={{ backgroundColor: '#653B3B', width: 150, height: 40, marginTop: 20, marginStart: 40, borderRadius: 50 }}>
-                    <Text style={{ color: '#fff', fontSize: 13, marginTop: 9, marginStart: 22 }}>BOOK YOUR TICKET</Text>
+                <View>
+                    <Text style={{ color: '#fff', marginTop: 40, fontSize: 30, marginStart: 10 }}>{params.dulieu.title}</Text>
+                    <Text style={{ color: '#B72F2F', marginStart: 10, marginTop: 5, fontSize: 20 }}>{displayGenres}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+
+                    <Text style={{ color: '#fff', marginStart: 10, fontSize: 20, marginTop: 4 }}>{params.dulieu.ratingsQuantity} REVIEWS ({params.dulieu.ratingsAverage}⭐)</Text>
+                </View>
+                <Text style={{ color: '#fff', marginStart: 10, marginTop: 10, fontSize: 16 }}>Storyline</Text>
+                <Text style={{ color: '#fff', marginStart: 10, marginTop: 10 }}>{params.dulieu.description}</Text>
+
+                <Text style={{ color: '#fff', marginStart: 10, fontSize: 15, marginTop: 15 }}>Cast: {displayCast}</Text>
+
+                <View style={{ flexDirection: 'row' }}>
+                    <TouchableOpacity style={{ backgroundColor: '#252525', width: 150, height: 40, marginTop: 20, marginStart: 30, borderRadius: 50 }}>
+                        <Text style={{ color: '#fff', fontSize: 13, marginTop: 9, marginStart: 25 }}>LEAVE A REVIEW</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={goSelectTimeAndCinema} style={{ backgroundColor: '#653B3B', width: 150, height: 40, marginTop: 20, marginStart: 40, borderRadius: 50 }}>
+                        <Text style={{ color: '#fff', fontSize: 13, marginTop: 9, marginStart: 22 }}>BOOK YOUR TICKET</Text>
+                    </TouchableOpacity>
+                </View>
+                <Text style={{ color: '#fff', fontSize: 30, alignSelf: "center" }}>REVIEWS</Text>
+                <View>
+                    {
+                        loading == true ? (
+                            <ActivityIndicator size="large" />
+                        ) : (
+
+                            reviews.map((item, _id) => <ItemReview item={item} key={_id} />)
+
+                        )
+                    }
                 </View>
             </View>
-        </View>
+        </ScrollView>
+
     )
 }
 
@@ -66,6 +104,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: 400,
         height: 300,
+        opacity: 0.3
     },
     boxImage2: {
         width: 50,
@@ -77,7 +116,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: 22,
         height: 22,
-        marginTop: 40,
         marginStart: 20
     },
 

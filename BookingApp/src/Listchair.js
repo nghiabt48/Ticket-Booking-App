@@ -6,7 +6,7 @@ const Listchair = () => {
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
         <Image source={require('./image/image3.png')} style={{ marginTop: 4, marginStart: 20 }} />
-        <Text style={{ color: '#fff', marginStart: 100, fontSize: 21 }}>Select seatc</Text>
+        <Text style={{ color: '#fff', marginStart: 100, fontSize: 21 }}>Select Seat</Text>
       </View>
       <View style={{ flexDirection: 'row' }}>
         <View style={{ height: 50, backgroundColor: '#BF2294', width: 50, borderTopLeftRadius: 10, borderTopRightRadius: 10, marginTop: 20, marginStart: 40 }}>

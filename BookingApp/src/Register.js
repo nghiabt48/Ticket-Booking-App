@@ -37,7 +37,7 @@ const Register = (props) => {
         navigation.navigate("Login")
     }
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <StatusBar barStyle="light-content" />
             <ImageBackground source={require("./Images/BG.png")} style={styles.logoContainer}>
                 <Text style={styles.title}>Cinema</Text>
@@ -86,7 +86,7 @@ const Register = (props) => {
                     </LinearGradient>
                 </TouchableOpacity>
             </View>
-        </SafeAreaView>
+        </View>
     )
 }
 
