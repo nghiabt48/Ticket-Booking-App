@@ -60,22 +60,25 @@ const Register = (props) => {
 
             <View style={styles.infocontainer}>
                 <TextInput style={styles.input}
+                    onChangeText={setemailUser}
                     placeholder="Enter username/mail"
                     keyboardType='email-address'
                     returnKeyType='next'
                     autoCorrect={false} />
                 <TextInput style={styles.input}
+                    onChangeText={setPasswordUser}
                     placeholder="Enter your password"
                     returnKeyType='go'
                     secureTextEntry={true}
                     autoCorrect={false} />
                 <TextInput style={styles.input}
+                    onChangeText={setpasswordConfirm}
                     placeholder="Confirm your password"
                     returnKeyType='go'
                     secureTextEntry={true}
                     autoCorrect={false} />
 
-                <TouchableOpacity>
+                <TouchableOpacity title='Register' onPress={RegisterApp}>
                     <LinearGradient
                         style={{
                             padding: 15,
