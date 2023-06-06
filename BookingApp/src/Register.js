@@ -16,7 +16,7 @@ const Register = (props) => {
 
             navigation.navigate("Login")
         } catch (e) {
-            if (e.response.data.error.name == "ValidationError" 
+            if (e.response.data.error.name == "ValidationError"
                 && e.response.data.error.message.includes("Passwords are not the same")) {
                 ToastAndroid.show("Mật khẩu không trùng khớp.", ToastAndroid.LONG);
             }
@@ -36,18 +36,74 @@ const Register = (props) => {
         navigation.navigate("Login")
     }
     return (
-        <View style={styles.container}>
-            <Text>Username</Text>
-            <TextInput style={styles.TextInputUser} onChangeText={setUsername}></TextInput>
-            <Text>email</Text>
-            <TextInput style={styles.TextInputUser} onChangeText={setemailUser}></TextInput>
-            <Text>Password</Text>
-            <TextInput style={styles.TextInputPass} onChangeText={setPasswordUser}></TextInput>
-            <Text>passwordConfirm</Text>
-            <TextInput style={styles.TextInputPass} onChangeText={setpasswordConfirm}></TextInput>
-            <Button title='Register' onPress={RegisterApp}></Button>
-            <Button title='Back' onPress={Back}></Button>
-        </View>
+        // <View style={styles.container}>
+        //     <Text>Username</Text>
+        //     <TextInput style={styles.TextInputUser} onChangeText={setUsername}></TextInput>
+        //     <Text>email</Text>
+        //     <TextInput style={styles.TextInputUser} onChangeText={setemailUser}></TextInput>
+        //     <Text>Password</Text>
+        //     <TextInput style={styles.TextInputPass} onChangeText={setPasswordUser}></TextInput>
+        //     <Text>passwordConfirm</Text>
+        //     <TextInput style={styles.TextInputPass} onChangeText={setpasswordConfirm}></TextInput>
+        //     <Button title='Register' onPress={RegisterApp}></Button>
+        //     <Button title='Back' onPress={Back}></Button>
+        // </View>
+
+
+        <SafeAreaView style={styles.container}>
+            <StatusBar barStyle="light-content" />
+
+            <ImageBackground source={require("./Images/BG.png")} style={styles.logoContainer}>
+                <Text style={styles.title}>Cinema</Text>
+                <Text style={styles.title2}>Plus+</Text>
+            </ImageBackground>
+
+            <View style={styles.infocontainer}>
+                <TextInput style={styles.input}
+                    placeholder="Enter username/mail"
+                    keyboardType='email-address'
+                    returnKeyType='next'
+                    autoCorrect={false} />
+                <TextInput style={styles.input}
+                    placeholder="Enter your password"
+                    returnKeyType='go'
+                    secureTextEntry={true}
+                    autoCorrect={false} />
+                <TextInput style={styles.input}
+                    placeholder="Confirm your password"
+                    returnKeyType='go'
+                    secureTextEntry={true}
+                    autoCorrect={false} />
+
+                <TouchableOpacity>
+                    <LinearGradient
+                        style={{
+                            padding: 15,
+                            borderRadius: 50,
+                            with: '100%',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                        start={{ x: 0.0, y: 0.0 }}
+                        end={{ x: 1.0, y: 0.0 }}
+                        locations={[0.0, 1.0]}
+                        colors={['#e5008e', '#fc2c11']}
+                        useAngle={45}>
+                        <Text
+                            style={{
+                                color: 'white',
+                                fontWeight: 'bold',
+                            }}>
+                            CREATE ACCOUNT
+                        </Text>
+                    </LinearGradient>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text style={styles.buttonText2}>Already have Account? <Text style={styles.buttonText3}>Sign In</Text></Text>
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>
+
     )
 }
 
@@ -66,5 +122,55 @@ const styles = StyleSheet.create({
     },
     TextInputPass: {
         borderWidth: 2
+    },
+    logoContainer: {
+        flex: 1,
+    },
+    title: {
+        color: 'white',
+        fontSize: 60,
+        marginTop: '50%',
+        marginLeft: 15,
+        opacity: 0.9,
+        fontFamily: 'serif',
+    },
+    title2: {
+        color: '#eb0b6d',
+        fontSize: 60,
+        marginTop: 5,
+        marginLeft: 15,
+        opacity: 0.9,
+        fontFamily: 'serif',
+    },
+    infocontainer: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: 330,
+        padding: 40,
+        // backgroundColor: 'red',
+    },
+    input: {
+        height: 40,
+        borderRadius: 10,
+        backgroundColor: 'rgba(255,255,255,0.2)',
+        color: '#FFF',
+        paddingHorizontal: 10,
+        marginBottom: 20,
+    },
+
+    buttonText2: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 15,
+        marginTop: 20,
+        color: 'white',
+    },
+    buttonText3: {
+        color: '#e5008e',
+    },
+    buttonG: {
+        borderRadius: 30
     },
 })
