@@ -24,8 +24,7 @@ const BookingScreen = () => {
     }
     fetchMoviePrice();
   }, [hardMovieId]);
-   const book = async() => {
-    
+   const checkOut = async() => {
     try{
       // 1. Get checkout session
       const response = await AxiosIntance().get(`tickets/checkout/${showtime}/${seat_number.length}`)

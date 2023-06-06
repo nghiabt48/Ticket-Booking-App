@@ -80,9 +80,7 @@ const Detail = (props) => {
                         loading == true ? (
                             <ActivityIndicator size="large" />
                         ) : (
-
                             reviews.map((item, _id) => <ItemReview item={item} key={_id} />)
-
                         )
                     }
                 </View>

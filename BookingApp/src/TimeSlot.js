@@ -36,11 +36,17 @@ const TimeSlot = (props) => {
         label: key,
         value: value
     }))
-    const goToChooseSeats = () => {
+    const goToChooseSeats = async() => {
         if(!currentValue){
             return ToastAndroid.show("Please select a date", ToastAndroid.SHORT)
+        }try {
+            const response = await AxiosIntance().get(`showtimes?movie=${movieID}&start_time=${currentValue}`);
+            // _id, movieId, cinema name, start_time, available_seats
+            navigation.navigate('PickSeats', {showtimeData: response.data.data[0], price, title: params.title})
+        } catch (error) {
+            console.log("Err at when loading Seats (timeslot): " + error.message);
         }
-        navigation.navigate('PickSeats', {movieID, start_time: currentValue, price, title: params.title})
+        
     }
     return (
         <View style={{ flex: 1, backgroundColor: '#1A1520', }}>
