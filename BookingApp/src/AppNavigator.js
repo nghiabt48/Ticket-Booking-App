@@ -71,7 +71,6 @@ const Main = () => {
       <Stack.Screen name="Test2" component={Test2} />
       <Tab.Screen name="Movie"component={DetailProductStack} options={{headerShown: false}}>
       </Tab.Screen>
-      <Stack.Screen name="Booking" component={BookingScreen} />
       <Stack.Screen name="ListChair" component={Listchair} options={{ title: "trang", headerShown: false, }} />
       <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}}/>
     </Tab.Navigator>
