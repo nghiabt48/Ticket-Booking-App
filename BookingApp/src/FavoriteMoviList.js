@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Test2 = () => {
+const FavoriteMovi = () => {
   return (
     <View>
       <Text>Test2</Text>
@@ -9,6 +9,6 @@ const Test2 = () => {
   )
 }
 
-export default Test2
+export default FavoriteMovi
 
 const styles = StyleSheet.create({})

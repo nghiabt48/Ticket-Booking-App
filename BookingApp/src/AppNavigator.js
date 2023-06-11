@@ -9,7 +9,6 @@ import MainApp from './MainApp';
 import BookingScreen from './BookingScreen';
 import ListMovi from './ListMovi';
 import ItemMovi from './ItemMovi';
-import Test2 from './Test2';
 import Test3 from './Test3';
 import Test4 from './Test4';
 import Listchair from './Listchair';
@@ -18,6 +17,7 @@ import TimeSlot from './TimeSlot';
 import SeatSelectionScreen from './SeatSelectionScreen';
 import ChangePassword from './ChangePassword';
 import Profile from './Profile';
+import FavoriteMovi from './FavoriteMoviList';
 
 
 const Stack = createNativeStackNavigator();
@@ -48,8 +48,8 @@ const Main = () => {
       tabBarIcon: ({ focused, color, size }) => {
         if (route.name === 'ChangePassword') {
           return <Image source={require('./image/movies.png')} />;
-        } else if (route.name === 'Test2') {
-          return <Image source={require('./image/tem.png')} />;
+        } else if (route.name === 'FavoriteMovi') {
+          return <Image source={require('./image/hear.png')} />;
         } else if (route.name === 'Movie') {
           return <Image source={require('./image/TV.png')} />;
         } else if (route.name === 'Test3') {
@@ -68,7 +68,7 @@ const Main = () => {
 
     })}>
       <Stack.Screen name="ChangePassword" component={ChangePassword} options={{headerShown: false}}/>
-      <Stack.Screen name="Test2" component={Test2} />
+      <Stack.Screen name="FavoriteMovi" component={FavoriteMovi} />
       <Tab.Screen name="Movie"component={DetailProductStack} options={{headerShown: false}}>
       </Tab.Screen>
       <Stack.Screen name="Booking" component={BookingScreen} />
