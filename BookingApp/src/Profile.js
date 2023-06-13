@@ -1,11 +1,16 @@
-import { StyleSheet, Text, View, Image, Button, FlatList, Pressable, TouchableOpacity } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, View, Image, Button, FlatList, Pressable, TouchableOpacity, Alert, ToastAndroid } from 'react-native'
+import React, { useContext, useEffect, useState } from 'react'
 import AxiosIntance from './AxiosIntance';
 import { LinearGradient } from 'expo-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
+import { AppConText } from './AppConText';
 
 const Profile = (props) => {
-    const { navigation } = props;
+    const {navigation} = props
+    const {setisLogin} = useContext(AppConText);
     const [data, setdata] = useState([])
+    const ImageURL = `http://139.180.138.39:3000/img/users/`
     useEffect(() => {
         const CaNhan = async () => {
             const respone = await AxiosIntance().get("/users/me");
@@ -24,7 +29,15 @@ const Profile = (props) => {
     const Change = async () => {
         navigation.navigate('ChangePassword');
     }
-    
+    const logout = async() =>{
+        setisLogin(false)
+        // navigation.reset({
+        //     index: 0,
+        //     routes: [{ name: 'Login' }]
+        //   })
+        await AsyncStorage.removeItem('token');
+        ToastAndroid.show("Loggin out...", ToastAndroid.SHORT)
+    }
     return (
         <View style={styles.container}>
 
@@ -35,7 +48,7 @@ const Profile = (props) => {
                 <Text style={styles.title}>Profile</Text>
             </View>
             <View style={styles.TextAlign}>
-                <Image source={require('./image/avatar.png')} style={styles.image} />
+                <Image source={{uri: `${ImageURL}${data.photo}`}} style={styles.image} />
             </View>
 
             <Text style={styles.InPut}>Username: {data.username}</Text>
@@ -50,7 +63,7 @@ const Profile = (props) => {
                 ><Text style={styles.buttonText}>CHANGE PASSWORD</Text>
                 </LinearGradient>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer}  >
+            <TouchableOpacity onPress={logout} style={styles.buttonContainer}  >
                 <LinearGradient
                     start={{ x: 0.0, y: 0.0 }}
                     end={{ x: 1.0, y: 0.0 }}

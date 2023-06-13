@@ -32,15 +32,25 @@ const Users = () => {
 
 }
 const DetailProductStack = () => {
-  return(
-  <Stack.Navigator screenOptions={{headerShown: false}}>
-    <Stack.Screen name="ListMovi" component={ListMovi} />
-    <Stack.Screen name="Detail" component={Detail}/>
-    <Stack.Screen name="PickTime" component={TimeSlot}/>
-    <Stack.Screen name="PickSeats" component={SeatSelectionScreen}/>
-  </Stack.Navigator>
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="ListMovi" component={ListMovi} />
+      <Stack.Screen name="Detail" component={Detail} />
+      <Stack.Screen name="PickTime" component={TimeSlot} />
+      <Stack.Screen name="PickSeats" component={SeatSelectionScreen} />
+
+    </Stack.Navigator>
   )
-  
+
+}
+const ProfileStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
+      <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+    </Stack.Navigator>
+  )
+
 }
 const Main = () => {
   return (
@@ -67,14 +77,15 @@ const Main = () => {
       }
 
     })}>
-      <Stack.Screen name="ChangePassword" component={ChangePassword} options={{headerShown: false}}/>
+      <Stack.Screen name="ChangePassword" component={ChangePassword} options={{ headerShown: false }} />
       <Stack.Screen name="Test2" component={Test2} />
-      <Tab.Screen name="Movie"component={DetailProductStack} options={{headerShown: false}}>
+      <Tab.Screen name="Movie" component={DetailProductStack} options={{ headerShown: false }}>
       </Tab.Screen>
       <Stack.Screen name="ListChair" component={Listchair} options={{ title: "trang", headerShown: false, }} />
-      <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}}/>
+      <Tab.Screen name="ProfileScreen" component={ProfileStack} options={{ headerShown: false }} />
+
     </Tab.Navigator>
-    
+
   )
 
 }
