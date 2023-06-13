@@ -6,7 +6,6 @@ import { AppConText } from './AppConText';
 import Login from './Login';
 import Register from './Register';
 import ListMovi from './ListMovi';
-import Listchair from './Listchair';
 import Detail from './Detail';
 import TimeSlot from './TimeSlot';
 import SeatSelectionScreen from './SeatSelectionScreen';
@@ -41,6 +40,7 @@ const ProfileStack = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
       <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+      <Stack.Screen name="ChangePassword" component={ChangePassword} options={{ headerShown: false }} />
     </Stack.Navigator>
   )
 
@@ -49,11 +49,11 @@ const Main = () => {
   return (
     <Tab.Navigator initialRouteName='Movie' screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
-        if (route.name === 'ChangePassword') {
+        if (route.name === 'Profile') {
+          return <Image source={require('./image/tem.png')} />;
+        } else if (route.name === 'Movie') {
           return <Image source={require('./image/movies.png')} />;
-        }  else if (route.name === 'Movie') {
-          return <Image source={require('./image/TV.png')} />;
-        } else if (route.name === 'Profile') {
+        } else if (route.name === 'ProfileScreen') {
           return <Image source={require('./image/pepole.png')} />;
         }
       },
@@ -66,11 +66,9 @@ const Main = () => {
       }
 
     })}>
-      <Stack.Screen name="ChangePassword" component={ChangePassword} options={{headerShown: false}}/>
-      <Tab.Screen name="Movie"component={DetailProductStack} options={{headerShown: false}}>
-      </Tab.Screen>
-      <Stack.Screen name="ListChair" component={Listchair} options={{ title: "trang", headerShown: false, }} />
-      <Tab.Screen name="ProfileScreen" component={ProfileStack} options={{ headerShown: false }} />
+      <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false, title: 'Tickets' }} />
+      <Tab.Screen name="Movie" component={DetailProductStack} options={{ headerShown: false }} />
+      <Tab.Screen name="ProfileScreen" component={ProfileStack} options={{ headerShown: false, title: 'Profile' }} />
 
     </Tab.Navigator>
 

@@ -7,8 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 import { AppConText } from './AppConText';
 
 const Profile = (props) => {
-    const {navigation} = props
-    const {setisLogin} = useContext(AppConText);
+    const { navigation } = props
+    const { setisLogin } = useContext(AppConText);
     const [data, setdata] = useState([])
     const ImageURL = `http://139.180.138.39:3000/img/users/`
     useEffect(() => {
@@ -29,7 +29,7 @@ const Profile = (props) => {
     const Change = async () => {
         navigation.navigate('ChangePassword');
     }
-    const logout = async() =>{
+    const logout = async () => {
         setisLogin(false)
         // navigation.reset({
         //     index: 0,
@@ -38,22 +38,24 @@ const Profile = (props) => {
         await AsyncStorage.removeItem('token');
         ToastAndroid.show("Loggin out...", ToastAndroid.SHORT)
     }
+    const goBack = async () => {
+        navigation.navigate('ListMovi');
+    }
     return (
         <View style={styles.container}>
-
-            <View style={styles.fixToText}>
-                <Pressable>
+            <TouchableOpacity onPress={goBack}>
+                <View style={styles.fixToText}>
                     <Image source={require('./image/image3.png')} />
-                </Pressable>
-                <Text style={styles.title}>Profile</Text>
-            </View>
+                    <Text style={styles.title}>Profile</Text>
+                </View>
+            </TouchableOpacity>
             <View style={styles.TextAlign}>
-                <Image source={{uri: `${ImageURL}${data.photo}`}} style={styles.image} />
+                <Image source={{ uri: `${ImageURL}${data.photo}` }} style={styles.image} />
             </View>
 
             <Text style={styles.InPut}>Username: {data.username}</Text>
             <Text style={styles.InPut}>Email: {data.email}</Text>
-            <TouchableOpacity style={styles.buttonContainer}  onPress={Change}>
+            <TouchableOpacity style={styles.buttonContainer} onPress={Change}>
                 <LinearGradient
                     start={{ x: 0.0, y: 0.0 }}
                     end={{ x: 1.0, y: 0.0 }}

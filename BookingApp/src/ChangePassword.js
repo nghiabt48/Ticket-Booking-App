@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { Button, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View ,Image} from 'react-native'
 import React, { useContext, useState } from 'react'
 import AxiosIntance from './AxiosIntance';
 import { AppConText } from './AppConText';
@@ -25,32 +25,32 @@ const ChangePassword = (props) => {
   }
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Enter old password</Text>
-      <TextInput style={styles.InPut} onChangeText={setPassword}></TextInput>
-      <Text style={styles.title}>Enter new password</Text>
-      <TextInput style={styles.InPut} onChangeText={setnewPassword}></TextInput>
-      <Text style={styles.title}>Enter password confirm</Text>
-      <TextInput style={styles.InPut} onChangeText={setnewPasswordConfirn}></TextInput>
-      <TouchableOpacity style={styles.buttonContainer} onPress={ChangePasswordUser}>
-        <LinearGradient
-          start={{ x: 0.0, y: 0.0 }}
-          end={{ x: 1.0, y: 0.0 }}
-          locations={[0.0, 1.0]}
-          colors={['#e5008e', '#fc2c11']}
-          style={styles.buttonG}
-        ><Text style={styles.buttonText}>CHANGE PASSWORD</Text>
-        </LinearGradient>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.buttonContainer} onPress={Back}>
-        <LinearGradient
-          start={{ x: 0.0, y: 0.0 }}
-          end={{ x: 1.0, y: 0.0 }}
-          locations={[0.0, 1.0]}
-          colors={['#e5008e', '#fc2c11']}
-          style={styles.buttonG}
-        ><Text style={styles.buttonText}>Back</Text>
-        </LinearGradient>
-      </TouchableOpacity>
+      <TouchableOpacity onPress={Back}>
+                <View style={styles.fixToText}>
+                    <Image source={require('./image/image3.png')} />
+                    <Text style={styles.title}>Profile</Text>
+                </View>
+            </TouchableOpacity>
+      <View style={styles.container1}>
+
+        <Text style={styles.title}>Enter old password</Text>
+        <TextInput style={styles.InPut} onChangeText={setPassword}></TextInput>
+        <Text style={styles.title}>Enter new password</Text>
+        <TextInput style={styles.InPut} onChangeText={setnewPassword}></TextInput>
+        <Text style={styles.title}>Enter password confirm</Text>
+        <TextInput style={styles.InPut} onChangeText={setnewPasswordConfirn}></TextInput>
+        <TouchableOpacity style={styles.buttonContainer} onPress={ChangePasswordUser}>
+          <LinearGradient
+            start={{ x: 0.0, y: 0.0 }}
+            end={{ x: 1.0, y: 0.0 }}
+            locations={[0.0, 1.0]}
+            colors={['#e5008e', '#fc2c11']}
+            style={styles.buttonG}
+          ><Text style={styles.buttonText}>CHANGE PASSWORD</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+        
+      </View>
     </View>
   )
 }
@@ -60,9 +60,11 @@ export default ChangePassword
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     padding: 20,
     backgroundColor: '#130B2B',
+  },
+  container1: {
+    marginTop:"40%"
   },
   InPut: {
     backgroundColor: '#201934',
@@ -94,5 +96,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  fixToText: {
+    flexDirection: 'row',
+    alignItems: 'center',
+},
 })
 

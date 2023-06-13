@@ -124,9 +124,17 @@ const SeatSelectionScreen = (props) => {
     }
 
   }
+  const goBack = async () => {
+    navigation.goBack()
+  }
   return (
     <View style={styles.container}>
-
+      <TouchableOpacity onPress={goBack}>
+        <View style={styles.fixToText1}>
+          <Image source={require('./image/image3.png')} />
+          <Text style={{ color: '#fff', fontSize: 23, }}>Back </Text>
+        </View>
+      </TouchableOpacity>
       <View style={{ flexDirection: 'row' }}>
         <View style={{ height: 50, backgroundColor: '#BF2294', width: 50, borderTopLeftRadius: 10, borderTopRightRadius: 10, marginTop: 20, marginStart: 40 }}>
 
@@ -135,10 +143,10 @@ const SeatSelectionScreen = (props) => {
         </View>
 
         <Text numberOfLines={1} style={{ width: 300, marginTop: 30, color: '#fff' }}>{params.title}</Text>
-        
+
 
       </View>
-      
+
       <View style={{ flexDirection: 'row' }}>
         <View style={{ height: 50, backgroundColor: '#746B79', width: 50, borderBottomRightRadius: 10, borderBottomStartRadius: 10, marginTop: 0, marginStart: 40 }}>
           <Text style={{ color: '#fff', marginStart: 5, marginTop: 10 }}>{hours}:{minutes}</Text>
@@ -150,17 +158,20 @@ const SeatSelectionScreen = (props) => {
         <Image source={require('./image/image18.png')} style={{ marginStart: 20 }} />
         <Text style={{ fontSize: 8, color: '#fff', marginTop: 5, marginStart: 10 }}>SELECTED</Text>
       </View>
-      <Text style={{ alignSelf: 'center',  color: '#fff', fontWeight: 'bold' }}>{cinema_name}</Text>
+      <Text style={{ alignSelf: 'center', color: '#fff', fontWeight: 'bold' }}>{cinema_name}</Text>
       <Image source={require('./image/Line1.png')} />
       <SeatList seats={seats} bookedSeats={bookedSeats} selectedSeats={selectedSeats} handleSeatPress={handleSeatPress} />
-      {totalPrice > 0 && (<View style={{ height: 50, backgroundColor: '#851010', width: 280, marginStart: 60, borderRadius: 50, marginTop: 10 }}>
-        <TouchableOpacity onPress={checkOut} style={{ flexDirection: 'row' }}>
-          <Text
-            style={{ color: '#fff', marginStart: 30, marginTop: 10 }}>
-            {totalPrice}₫</Text>
-          <Text
-            style={{ color: '#fff', marginStart: 20, marginTop: 10 }}>
-            PROCEED TO CHECK</Text>
+      {totalPrice > 0 && (<View style={{ height: 50, backgroundColor: '#851010', borderRadius: 50, marginTop: 10, justifyContent: 'center', marginBottom: 10, marginStart: 20, marginEnd: 20, }}>
+        <TouchableOpacity onPress={checkOut}  >
+          <View style={styles.fixToText}>
+            <Text
+              style={{ color: '#fff' }}>
+              {totalPrice}₫</Text>
+            <Text
+              style={{ color: '#fff', }}>
+              PROCEED TO CHECK</Text>
+          </View>
+
         </TouchableOpacity>
 
       </View>)}
@@ -177,6 +188,17 @@ const styles = StyleSheet.create({
     borderWidth: 1, // Đường viền xung quanh FlatList
     borderColor: 'pink', // Màu đường viền
     margin: 10,
-  }
+  },
+  fixToText: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  fixToText1: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginStart: 20,
+    margin: 10,
+  },
 })
 export default SeatSelectionScreen;

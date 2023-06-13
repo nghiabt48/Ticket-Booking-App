@@ -36,24 +36,34 @@ const TimeSlot = (props) => {
         label: key,
         value: value
     }))
-    const goToChooseSeats = async() => {
-        if(!currentValue){
+    const goToChooseSeats = async () => {
+        if (!currentValue) {
             return ToastAndroid.show("Please select a date", ToastAndroid.SHORT)
-        }try {
+        } try {
             const response = await AxiosIntance().get(`showtimes?movie=${movieID}&start_time=${currentValue}`);
             // _id, movieId, cinema name, start_time, available_seats
-            navigation.navigate('PickSeats', {showtimeData: response.data.data[0], price, title: params.title})
+            navigation.navigate('PickSeats', { showtimeData: response.data.data[0], price, title: params.title })
         } catch (error) {
             console.log("Err at when loading Seats (timeslot): " + error.message);
         }
-        
+
+    }
+    const goBack = async () => {
+        navigation.goBack()
     }
     return (
-        <View style={{ flex: 1, backgroundColor: '#1A1520', }}>
-            <Image source={require('./image/image3.png')} style={{ marginStart: 10, marginTop: 30, width: 22, height: 22 }} />
-            <Text style={{ color: '#fff', fontSize: 23, marginStart: 110, }}>Choose Session </Text>
-            <Text style={{ color: '#fff', marginStart: 20, marginTop: 20, fontSize: 18 }}>Choose Cinema</Text>
-            <View style={{ backgroundColor: '#252525', width: 350, height: 100, marginStart: 20, marginTop: 10, borderRadius: 10 }}>
+        <View style={{ flex: 1, backgroundColor: '#1A1520', padding: 20 }}>
+            <TouchableOpacity onPress={goBack}>
+                <View style={styles.fixToText}>
+                    <Image source={require('./image/image3.png')} />
+                    <Text style={{ color: '#fff', fontSize: 23, }}>Choose Session </Text>
+                </View>
+            </TouchableOpacity>
+
+
+
+            <Text style={{ color: '#fff', marginTop: 20, fontSize: 18 }}>Choose Cinema</Text>
+            <View style={{ backgroundColor: '#252525', width: 350, height: 100, marginTop: 10, borderRadius: 10 }}>
                 <View style={{ flexDirection: 'row' }}>
                     <Image source={require('./image/image146.png')} style={{ marginTop: 15, marginStart: 10 }} />
                     <View style={{ flexDirection: 'column' }}>
@@ -63,7 +73,7 @@ const TimeSlot = (props) => {
                     <Image source={require('./image/icons8.png')} style={{ width: 22, height: 22, marginStart: 40, marginTop: 35 }} />
                 </View>
             </View>
-            <Text style={{ color: '#fff', marginStart: 20, marginTop: 30, fontSize: 18 }}>Choose Date</Text>
+            <Text style={{ color: '#fff', marginTop: 30, fontSize: 18 }}>Choose Date</Text>
             <View style={{ padding: 30 }}>
                 <DropDownPicker
                     items={items}
@@ -73,9 +83,9 @@ const TimeSlot = (props) => {
                     setOpen={() => setisopen(!isopen)}
                 />
             </View>
-            
-            <TouchableOpacity onPress={goToChooseSeats} style={{ backgroundColor: '#851010', width: 310, height: 50, marginStart: 40, marginTop: 200, borderRadius: 90 }}>
-                <Text style={{ color: '#fff', marginTop: 10,alignSelf: 'center', fontSize: 16 }}>Buy Ticket</Text>
+
+            <TouchableOpacity onPress={goToChooseSeats} style={{ backgroundColor: '#851010', height: 50, marginTop: '50%', borderRadius: 90 }}>
+                <Text style={{ color: '#fff', marginTop: 10, alignSelf: 'center', fontSize: 16 }}>Buy Ticket</Text>
             </TouchableOpacity>
         </View>
     )
@@ -83,4 +93,9 @@ const TimeSlot = (props) => {
 
 export default TimeSlot
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    fixToText: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+})
