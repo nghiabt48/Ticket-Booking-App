@@ -54,7 +54,9 @@ const BookingScreen = () => {
     }
     
   }
-  
+  const book=async()=>{
+    
+  }
   return (
     <View style={styles.container}>
       <Text>Ghế đã chọn: C3, C4</Text>
