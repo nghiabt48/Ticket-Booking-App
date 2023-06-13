@@ -5,20 +5,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AppConText } from './AppConText';
 import Login from './Login';
 import Register from './Register';
-import MainApp from './MainApp';
-import BookingScreen from './BookingScreen';
 import ListMovi from './ListMovi';
-import ItemMovi from './ItemMovi';
-import Test3 from './Test3';
-import Test4 from './Test4';
 import Listchair from './Listchair';
 import Detail from './Detail';
 import TimeSlot from './TimeSlot';
 import SeatSelectionScreen from './SeatSelectionScreen';
 import ChangePassword from './ChangePassword';
 import Profile from './Profile';
-import FavoriteMovi from './FavoriteMoviList';
-
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -58,12 +51,8 @@ const Main = () => {
       tabBarIcon: ({ focused, color, size }) => {
         if (route.name === 'ChangePassword') {
           return <Image source={require('./image/movies.png')} />;
-        } else if (route.name === 'FavoriteMovi') {
-          return <Image source={require('./image/hear.png')} />;
-        } else if (route.name === 'Movie') {
+        }  else if (route.name === 'Movie') {
           return <Image source={require('./image/TV.png')} />;
-        } else if (route.name === 'Test3') {
-          return <Image source={require('./image/hear.png')} />;
         } else if (route.name === 'Profile') {
           return <Image source={require('./image/pepole.png')} />;
         }
