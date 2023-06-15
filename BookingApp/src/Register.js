@@ -10,7 +10,7 @@ const Register = (props) => {
     const [passwordUser, setPasswordUser] = useState("")
     const [passwordConfirm, setpasswordConfirm] = useState("")
     const RegisterApp = async () => {
-
+        console.log('register')
         try {
             await AxiosIntance().post("users/register", { username: Username, email: emailUser, password: passwordUser, passwordConfirm: passwordConfirm });
             ToastAndroid.show("Dang ky thanh cong!", ToastAndroid.SHORT);
@@ -44,10 +44,10 @@ const Register = (props) => {
                 <Text style={styles.title2}>Plus+</Text>
             </ImageBackground>
             <View style={styles.infocontainer}>
-            <TextInput style={styles.input} onChangeText={setPasswordUser}
+            <TextInput style={styles.input} onChangeText={setUsername}
                     placeholder="Enter username"
                     returnKeyType='go'
-                    secureTextEntry={true}
+               
                     autoCorrect={false} />
                 <TextInput style={styles.input} onChangeText={setemailUser}
                     placeholder="Enter mail"
@@ -59,7 +59,7 @@ const Register = (props) => {
                     returnKeyType='go'
                     secureTextEntry={true}
                     autoCorrect={false} />
-                <TextInput style={styles.input} onChangeText={setPasswordUser}
+                <TextInput style={styles.input} onChangeText={setpasswordConfirm}
                     placeholder="Enter password confirm"
                     returnKeyType='go'
                     secureTextEntry={true}
