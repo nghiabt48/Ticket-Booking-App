@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, TextInput, View, ToastAndroid, ImageBackground, SafeAreaView, StatusBar, TouchableOpacity } from 'react-native'
+import { Button, StyleSheet, Text, TextInput, View, ToastAndroid, ImageBackground, SafeAreaView, StatusBar, TouchableOpacity, Dimensions } from 'react-native'
 import React, { useState } from 'react'
 import AxiosIntance from './AxiosIntance';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -17,7 +17,7 @@ const Register = (props) => {
 
             navigation.navigate("Login")
         } catch (e) {
-            if (e.response.data.error.name == "ValidationError" 
+            if (e.response.data.error.name == "ValidationError"
                 && e.response.data.error.message.includes("Passwords are not the same")) {
                 ToastAndroid.show("Mật khẩu không trùng khớp.", ToastAndroid.LONG);
             }
@@ -42,50 +42,51 @@ const Register = (props) => {
             <ImageBackground source={require("./Images/BG.png")} style={styles.logoContainer}>
                 <Text style={styles.title}>Cinema</Text>
                 <Text style={styles.title2}>Plus+</Text>
-            </ImageBackground>
-            <View style={styles.infocontainer}>
-            <TextInput style={styles.input} onChangeText={setUsername}
-                    placeholder="Enter username"
-                    returnKeyType='go'
-               
-                    autoCorrect={false} />
-                <TextInput style={styles.input} onChangeText={setemailUser}
-                    placeholder="Enter mail"
-                    keyboardType='email-address'
-                    returnKeyType='next'
-                    autoCorrect={false} />
-                <TextInput style={styles.input} onChangeText={setPasswordUser}
-                    placeholder="Enter password"
-                    returnKeyType='go'
-                    secureTextEntry={true}
-                    autoCorrect={false} />
-                <TextInput style={styles.input} onChangeText={setpasswordConfirm}
-                    placeholder="Enter password confirm"
-                    returnKeyType='go'
-                    secureTextEntry={true}
-                    autoCorrect={false} />
 
-                <TouchableOpacity style={styles.buttonContainer} title='Register' onPress={RegisterApp}>
-                    <LinearGradient
-                        start={{ x: 0.0, y: 0.0 }}
-                        end={{ x: 1.0, y: 0.0 }}
-                        locations={[0.0, 1.0]}
-                        colors={['#e5008e', '#fc2c11']}
-                        style={styles.buttonG}
-                    ><Text style={styles.buttonText}>REGISTER</Text>
-                    </LinearGradient>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonContainer1} title='Back' onPress={Back}>
-                    <LinearGradient
-                        start={{ x: 0.0, y: 0.0 }}
-                        end={{ x: 1.0, y: 0.0 }}
-                        locations={[0.0, 1.0]}
-                        colors={['#e5008e', '#fc2c11']}
-                        style={styles.buttonG}
-                    ><Text style={styles.buttonText}>BACK</Text>
-                    </LinearGradient>
-                </TouchableOpacity>
-            </View>
+                <View style={styles.infocontainer}>
+                    <TextInput style={styles.input} onChangeText={setUsername}
+                        placeholder="Enter username"
+                        returnKeyType='go'
+
+                        autoCorrect={false} />
+                    <TextInput style={styles.input} onChangeText={setemailUser}
+                        placeholder="Enter mail"
+                        keyboardType='email-address'
+                        returnKeyType='next'
+                        autoCorrect={false} />
+                    <TextInput style={styles.input} onChangeText={setPasswordUser}
+                        placeholder="Enter password"
+                        returnKeyType='go'
+                        secureTextEntry={true}
+                        autoCorrect={false} />
+                    <TextInput style={styles.input} onChangeText={setpasswordConfirm}
+                        placeholder="Enter password confirm"
+                        returnKeyType='go'
+                        secureTextEntry={true}
+                        autoCorrect={false} />
+
+                    <TouchableOpacity style={styles.buttonContainer} title='Register' onPress={RegisterApp}>
+                        <LinearGradient
+                            start={{ x: 0.0, y: 0.0 }}
+                            end={{ x: 1.0, y: 0.0 }}
+                            locations={[0.0, 1.0]}
+                            colors={['#e5008e', '#fc2c11']}
+                            style={styles.buttonG}
+                        ><Text style={styles.buttonText}>REGISTER</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.buttonContainer1} title='Back' onPress={Back}>
+                        <LinearGradient
+                            start={{ x: 0.0, y: 0.0 }}
+                            end={{ x: 1.0, y: 0.0 }}
+                            locations={[0.0, 1.0]}
+                            colors={['#e5008e', '#fc2c11']}
+                            style={styles.buttonG}
+                        ><Text style={styles.buttonText}>BACK</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                </View>
+            </ImageBackground>
         </View>
     )
 }
@@ -100,11 +101,14 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
         flex: 1,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+        resizeMode: 'stretch',
     },
     title: {
         color: 'white',
         fontSize: 60,
-        marginTop: '30%',
+        marginTop: '20%',
         marginLeft: 15,
         opacity: 0.9,
         fontFamily: 'serif',
@@ -118,13 +122,7 @@ const styles = StyleSheet.create({
         fontFamily: 'serif',
     },
     infocontainer: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        bottom: 0,
-        height: 260,
-        padding: 30,
-        marginBottom: '50%',
+        padding: 40,
         // backgroundColor: 'red',
     },
     input: {
@@ -136,17 +134,18 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
 
-    buttonText: {
-        height: 48,
-        textAlign: 'center',
+    buttonText: { 
         fontWeight: 'bold',
-        fontSize: 30,
+        fontSize: 20,
         color: 'white',
     },
     buttonG: {
-        borderRadius: 30
+        borderRadius: 30,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    buttonContainer1:{
-        marginTop:10,
+    buttonContainer1: {
+        marginTop: 10,
     }
 })

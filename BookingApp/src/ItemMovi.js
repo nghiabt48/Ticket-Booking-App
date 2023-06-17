@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    padding: 20,
+    padding: 13,
     maxWidth: Dimensions.get('window').width / 2
   },
   itemAll: {

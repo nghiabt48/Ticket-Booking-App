@@ -49,7 +49,7 @@ const ListMovi = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.Tim}>
-                <TextInput placeholder='Search...' onChangeText={(text) => down(text)} style={styles.TextInputTim}></TextInput>
+                <TextInput placeholder='Search...' placeholderTextColor={'#ffff'} onChangeText={(text) => down(text)} style={styles.TextInputTim}></TextInput>
                 
             </View>
             {
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#130B2B',
+        padding:7,
     },
     TextInputTim: {
         width:'100%',

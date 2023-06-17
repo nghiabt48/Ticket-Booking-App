@@ -39,44 +39,44 @@ const Login = (props) => {
         // </View>
         <View style={styles.container}>
             <StatusBar barStyle="light-content" />
-            
+
             <ImageBackground source={require("./Images/BG.png")} style={styles.logoContainer}>
                 <Text style={styles.title}>Cinema</Text>
                 <Text style={styles.title2}>Plus+</Text>
                 <View style={styles.infocontainer}>
-                <TextInput style={styles.input} onChangeText={setemailUser}
-                    placeholder="Enter email"
-                    placeholderTextColor={'#aba9a7'}
-                    keyboardType='email-address'
-                    returnKeyType='next'
-                    autoCorrect={false} />
-                <TextInput style={styles.input} onChangeText={setPasswordUser}
-                    placeholder="Enter password"
-                    placeholderTextColor={'#aba9a7'}
-                    returnKeyType='go'
-                    secureTextEntry={true}
-                    autoCorrect={false} />
-                
-                    <TouchableOpacity  style={styles.buttonContainer} title='Login' onPress={LoginApp}>
+                    <TextInput style={styles.input} onChangeText={setemailUser}
+                        placeholder="Enter email"
+                        placeholderTextColor={'#aba9a7'}
+                        keyboardType='email-address'
+                        returnKeyType='next'
+                        autoCorrect={false} />
+                    <TextInput style={styles.input} onChangeText={setPasswordUser}
+                        placeholder="Enter password"
+                        placeholderTextColor={'#aba9a7'}
+                        returnKeyType='go'
+                        secureTextEntry={true}
+                        autoCorrect={false} />
 
-                
-                    <LinearGradient
-                        start={{ x: 0.0, y: 0.0 }}
-                        end={{ x: 1.0, y: 0.0 }}
-                        locations={[0.0, 1.0]}
-                        colors={['#e5008e', '#fc2c11']}
-                        style={styles.buttonG}
-                    ><Text style={styles.buttonText}>SIGN IN</Text>
-                    </LinearGradient>
+                    <TouchableOpacity style={styles.buttonContainer} title='Login' onPress={LoginApp}>
+
+
+                        <LinearGradient
+                            start={{ x: 0.0, y: 0.0 }}
+                            end={{ x: 1.0, y: 0.0 }}
+                            locations={[0.0, 1.0]}
+                            colors={['#e5008e', '#fc2c11']}
+                            style={styles.buttonG}
+                        ><Text style={styles.buttonText}>SIGN IN</Text>
+                        </LinearGradient>
                     </TouchableOpacity>
 
-                <TouchableOpacity title='Register' onPress={DangKy}>
-                    <Text style={styles.buttonText2}>New at CinemaPlus? <Text style={styles.buttonText3}>Create Account</Text></Text>
-                </TouchableOpacity>
-            </View>
+                    <TouchableOpacity title='Register' onPress={DangKy}>
+                        <Text style={styles.buttonText2}>New at CinemaPlus? <Text style={styles.buttonText3}>Create Account</Text></Text>
+                    </TouchableOpacity>
+                </View>
             </ImageBackground>
 
-            
+
         </View>
     )
 }
